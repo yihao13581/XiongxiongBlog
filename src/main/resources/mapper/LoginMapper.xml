@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.junjun.messages.mapper.LoginMapper">
+
+    <select id="getUser" resultType="com.junjun.messages.beans.UserDO">
+        SELECT
+            u.id,
+            u.user_name,
+            u.user_pass,
+            u.user_dis_name,
+            u.user_avatar
+        FROM
+            mess_user u
+        WHERE u.status = '0'
+            AND u.user_name = #{userName}
+            AND u.user_pass = #{userPass}
+
+    </select>
+
+</mapper>

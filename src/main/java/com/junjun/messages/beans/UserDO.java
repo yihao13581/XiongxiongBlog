@@ -1,9 +1,8 @@
 package com.junjun.messages.beans;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.junjun.messages.beans.common.BaseBean;
 import lombok.Data;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Date;
@@ -15,7 +14,6 @@ import java.util.Date;
  * Version 1.0
  **/
 @Data
-@TableName("mess_user")
 public class UserDO extends BaseBean {
 
     /**
@@ -51,35 +49,9 @@ public class UserDO extends BaseBean {
     private String userDesc;
 
     /**
-     * 个人主页
-     */
-    private String userSite;
-
-    /**
      * 是否是管理员 1是，0否
      */
     private Integer isAdmin;
-
-    /**
-     * 是否禁用登录
-     */
-    // @JsonIgnore
-    private String loginRefuse = "true";
-
-    /**
-     * 最后一次登录时间
-     */
-    private Date loginLast;
-
-    /**
-     * 登录错误次数记录
-     */
-    private Integer loginError = 0;
-
-    /**
-     * 是否验证邮箱
-     */
-    private String emailEnable = "false";
 
     /**
      * 0 正常
@@ -89,6 +61,11 @@ public class UserDO extends BaseBean {
     private Integer status = 0;
 
     /**
+     * 最后一次登录时间
+     */
+    private Date loginLast;
+
+    /**
      * 注册时间
      */
     private Date createTime;
@@ -96,12 +73,10 @@ public class UserDO extends BaseBean {
     /**
      * 文章数
      */
-    @TableField(exist = false)
     private Integer postCount;
 
     /**
      * 评论数
      */
-    @TableField(exist = false)
     private Integer commentCount;
 }
