@@ -2,17 +2,16 @@ package com.junjun.messages.web.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.junjun.messages.beans.UserDO;
 import com.junjun.messages.beans.common.OutputObject;
 import com.junjun.messages.service.LoginService;
 import com.junjun.messages.utils.enums.ReturnInfoEnums;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -63,5 +62,30 @@ public class LoginController {
         log.info("auth出参为：" + JSON.toJSONString(outputObject, SerializerFeature.WriteMapNullValue));
         return outputObject;
     }
+
+    @RequestMapping(value="/getUserById",method= RequestMethod.POST)
+    public OutputObject getUserById(@RequestParam("id")int id){
+        OutputObject outputObject=new OutputObject();
+        if(StringUtils.isEmpty(id+"")){
+            outputObject.setReturnCode(ReturnInfoEnums.E_50002.getCode());
+            outputObject.setReturnCode(ReturnInfoEnums.E_50002.getMessage());
+            return outputObject;
+        }
+        UserDO userDo=loginService.getUserById(id);
+        if(userDo==null){
+            outputObject.setReturnCode(ReturnInfoEnums.E_50001.getCode());
+            outputObject.setReturnCode(ReturnInfoEnums.E_50001.getMessage());
+            return outputObject;
+        }
+        Map<String,String> result=new HashMap<>();
+        result.put("id",userDo.getId()+"");
+        result.put("userName",userDo.getUserName());
+        result.put("userAvatar",userDo.getUserAvatar());
+        outputObject.setBean(result);
+        outputObject.setReturnCode(ReturnInfoEnums.PROCESS_SUCCESS.getCode());
+        outputObject.setReturnMessage(ReturnInfoEnums.PROCESS_SUCCESS.getMessage());
+        return  outputObject;
+    }
+
 
 }

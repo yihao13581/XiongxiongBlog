@@ -27,4 +27,11 @@ public interface LoginService {
      * @Param [userAcct, password]
      **/
     Map<String, String> authLogin(String userAcct, String userPass);
+
+    /**
+     * @Description 根据用户id(主键)获取用户信息
+     * @Param [id]
+     * @return com.junjun.messages.beans.UserDO
+     **/
+    UserDO getUserById(int id);
 }

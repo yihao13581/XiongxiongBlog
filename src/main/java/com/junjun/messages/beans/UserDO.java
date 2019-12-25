@@ -79,4 +79,9 @@ public class UserDO extends BaseBean {
      * 评论数
      */
     private Integer commentCount;
+
+//    /**
+////     * 账号的级别信息：1超级管理员，2普通管理员，3VIP用户,4普通用户
+////     */
+////    private String level;
 }

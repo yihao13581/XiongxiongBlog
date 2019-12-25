@@ -25,9 +25,10 @@ public enum  ReturnInfoEnums {
 
     E_20011("20011", "登陆已过期,请重新登陆"),
 
-    E_90003("90003", "缺少必填参数");
+    E_90003("90003", "缺少必填参数"),
 
-
+    E_50001("5001","用户不存在"),
+    E_50002("5002","必填参数为空");
     private String code;
     private String message;
 

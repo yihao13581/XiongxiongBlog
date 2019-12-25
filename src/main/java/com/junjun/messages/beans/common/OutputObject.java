@@ -29,4 +29,53 @@ public class OutputObject implements Serializable {
     private List<Map<String, String>> beans;
     private Map<String, Set<String>> bean2;
 
+
+
+    public String getReturnCode() {
+        return returnCode;
+    }
+
+    public void setReturnCode(String returnCode) {
+        this.returnCode = returnCode;
+    }
+
+    public String getReturnMessage() {
+        return returnMessage;
+    }
+
+    public void setReturnMessage(String returnMessage) {
+        this.returnMessage = returnMessage;
+    }
+
+    public String getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
+    public Map<String, String> getBean() {
+        return bean;
+    }
+
+    public void setBean(Map<String, String> bean) {
+        this.bean = bean;
+    }
+
+    public List<Map<String, String>> getBeans() {
+        return beans;
+    }
+
+    public void setBeans(List<Map<String, String>> beans) {
+        this.beans = beans;
+    }
+
+    public Map<String, Set<String>> getBean2() {
+        return bean2;
+    }
+
+    public void setBean2(Map<String, Set<String>> bean2) {
+        this.bean2 = bean2;
+    }
 }

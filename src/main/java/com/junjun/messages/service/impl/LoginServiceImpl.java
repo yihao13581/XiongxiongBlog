@@ -46,4 +46,9 @@ public class LoginServiceImpl implements LoginService {
 
         return map;
     }
+
+    @Override
+    public UserDO getUserById(int id) {
+        return loginMapper.getUserById(id);
+    }
 }
