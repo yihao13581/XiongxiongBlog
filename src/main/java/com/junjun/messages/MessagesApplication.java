@@ -13,6 +13,7 @@ public class MessagesApplication extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication application = new SpringApplication(MessagesApplication.class);
+        // 关闭Springboot启动动画
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
     }

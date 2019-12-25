@@ -2,8 +2,6 @@ package com.junjun.messages.service;
 
 import com.junjun.messages.beans.UserDO;
 
-import java.util.Map;
-
 /**
  * @ClassName LoginService
  * @Author huanxiong
@@ -21,10 +19,18 @@ public interface LoginService {
     UserDO getUser(String userName, String userPass);
 
     /**
-     * @return com.junjun.messages.beans.common.OutputObject
      * @MethodName authLogin
      * @Description 登录表单提交处理
      * @Param [userAcct, password]
+     * @return java.lang.String
      **/
-    Map<String, String> authLogin(String userAcct, String userPass);
+    String authLogin(String userAcct, String userPass);
+
+    /**
+     * @MethodName logout
+     * @Description 登出功能
+     * @Param []
+     * @return java.lang.String
+     **/
+    String logout();
 }

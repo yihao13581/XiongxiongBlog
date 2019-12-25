@@ -3,6 +3,7 @@ package com.junjun.messages.service.impl;
 import com.junjun.messages.beans.UserDO;
 import com.junjun.messages.mapper.LoginMapper;
 import com.junjun.messages.service.LoginService;
+import com.junjun.messages.utils.consts.Constants;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -10,9 +11,6 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @ClassName LoginServiceImpl
@@ -33,17 +31,42 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public Map<String, String> authLogin(String userAcct, String userPass) {
-        Map<String, String> map = new HashMap<>();
+    public String authLogin(String userAcct, String userPass) {
+
         Subject currentUser = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(userAcct, userPass);
+        // 返回结果
+        String result;
         try {
+            // 登录，保存session
             currentUser.login(token);
-            map.put("result", "success");
+            log.info("登录成功！");
+            result = Constants.REQUEST_SUCCESS;
         } catch (AuthenticationException e) {
-            map.put("result", "failed");
+
+           log.info("登录失败！账号或密码错误：" + e);
+           result = Constants.REQUEST_FAILED;
         }
 
-        return map;
+        return result;
+    }
+
+    @Override
+    public String logout() {
+
+        // 返回结果
+        String result;
+
+        try {
+            Subject currentUser = SecurityUtils.getSubject();
+            // 推出登录，清空 session
+            currentUser.logout();
+            log.info("退出登录成功！");
+            result = Constants.REQUEST_SUCCESS;
+        } catch (Exception e) {
+            result = Constants.REQUEST_FAILED;
+            log.error("退出登录失败！");
+        }
+        return result;
     }
 }
